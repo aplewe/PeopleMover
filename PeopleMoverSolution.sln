@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleMover", "PeopleMoverSolution\PeopleMover.csproj", "{B1B5BA44-543F-4E29-9C4C-9F0E560DB371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleMover.Tests", "PeopleMoverSolution.Tests\PeopleMover.Tests.csproj", "{73E57B90-291A-4BAC-B16D-4F568FB0DD89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "People", "People\People.csproj", "{27D43160-F381-4737-B808-1F3A703E0685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1B5BA44-543F-4E29-9C4C-9F0E560DB371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B5BA44-543F-4E29-9C4C-9F0E560DB371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B5BA44-543F-4E29-9C4C-9F0E560DB371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B5BA44-543F-4E29-9C4C-9F0E560DB371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E57B90-291A-4BAC-B16D-4F568FB0DD89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E57B90-291A-4BAC-B16D-4F568FB0DD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E57B90-291A-4BAC-B16D-4F568FB0DD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E57B90-291A-4BAC-B16D-4F568FB0DD89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D43160-F381-4737-B808-1F3A703E0685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D43160-F381-4737-B808-1F3A703E0685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D43160-F381-4737-B808-1F3A703E0685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D43160-F381-4737-B808-1F3A703E0685}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
