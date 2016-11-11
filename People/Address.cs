@@ -1,4 +1,5 @@
-﻿using People.Enums;
+﻿using System.Collections.Generic;
+using People.Enums;
 
 namespace People
 {
@@ -12,10 +13,13 @@ namespace People
 
         public string City { get; set; }
 
-        public string Territory { get; set; }
-
-        public TerritoryType TerritoryType { get; set; }
+        public List<Locality> Localities { get; set; }
 
         public string Country { get; set; }
+
+        public Address()
+        {
+            Localities = new List<Locality>();
+        }
     }
 }

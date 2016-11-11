@@ -9,6 +9,8 @@ namespace People.Enums
     public enum TerritoryType
     {
        State = 1,
-       Province = 2 
+       Province = 2,
+       Canton = 3,
+       Region = 4 
     }
 }
