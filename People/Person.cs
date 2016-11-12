@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace People
+namespace PeopleManager
 {
     public class Person
     {
+        public int PersonId { get; set; }
         public string Name { get; set; }
-        public UInt64 Id { get; set; }
         public int Age { get; set; }
         public Address HomeAddress { get; set; }
 
@@ -15,10 +15,13 @@ namespace People
 
         public List<string> Interests { get; set; }
 
+        public bool IsActive { get; set; }
+
         public Person()
         {
             HomeAddress = new Address();
             Interests = new List<string>();
+            IsActive = true;
         }
     }
 }

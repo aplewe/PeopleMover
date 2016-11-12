@@ -1,11 +1,13 @@
 ﻿using System;
 
-using People.Enums;
+using PeopleManager.Enums;
 
-namespace People
+namespace PeopleManager
 {
     public class Locality
     {
+        public int LocalityId { get; set; }
+
         public TerritoryType LocalityType { get; set; }
 
         public string LocalityName { get; set; }

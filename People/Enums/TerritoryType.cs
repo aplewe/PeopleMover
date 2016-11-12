@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace People.Enums
+namespace PeopleManager.Enums
 {
     public enum TerritoryType
     {
-       State = 1,
-       Province = 2,
-       Canton = 3,
-       Region = 4 
+       City = 1,
+       Parrish = 2,
+       State = 3,
+       Province = 4,
+       Canton = 5,
+       Region = 6 
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using People;
-using People.Enums;
+using PeopleManager;
+using PeopleManager.Enums;
 
 namespace PeopleMoverSolution.Tests
 {
@@ -27,9 +27,12 @@ namespace PeopleMoverSolution.Tests
 
             aTest.Address1 = "blah";
             aTest.Address2 = "blah2";
-            aTest.City = "Salt Lake City";
             aTest.Country = "United States";
             aTest.PostalCode = "84101";
+
+            Locality addressCity = new Locality();
+            addressCity.LocalityName = "Salt Lake City";
+            addressCity.LocalityType = TerritoryType.City;
 
             Locality addressState = new Locality();
 
@@ -48,11 +51,10 @@ namespace PeopleMoverSolution.Tests
             Person pTest = new Person();
 
             pTest.Age = 44;
-            pTest.HomeAddress = new Address();
-            pTest.Id = 1;
+            pTest.PersonId = 1;
 
             Assert.IsNotNull(pTest);
-            
+            Assert.IsNotNull(pTest.HomeAddress);
         }
     }
 }
