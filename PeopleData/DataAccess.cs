@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 using PeopleManager;
 using PeopleManager.Enums;
+
+using TestStack.Dossier;
 
 namespace PeopleData
 {
@@ -40,23 +43,33 @@ namespace PeopleData
             return success;
         }
 
-        public bool UpdatePerson(Person p)
+        public void UpdatePerson(Person p)
         {
-            bool success = true;
-
             //update the person:
-
-            return success;
         }
 
-        public bool DeletePerson(Person p)
+        public void DeletePerson(Person p)
         {
-            bool success = true;
-
             //Remove the person, but not really (set isactive flag = false):
             
+        }
 
-            return success;
+        public void MocPeople(int peopleCount)
+        {
+            var fakePeople = Builder<Person>.CreateListOfSize(peopleCount).BuildList();
+
+            foreach (Person p in fakePeople)
+            {
+                p.HomeAddress = Builder<Address>.CreateNew();
+                p.HomeAddress.Localities = new List<Locality>();
+                p.HomeAddress.Localities.Add(Builder<Locality>.CreateNew());
+                p.HomeAddress.Localities.Add(Builder<Locality>.CreateNew());
+                p.Interests = new List<string>();
+                p.Interests.Add(Guid.NewGuid().ToString());
+                p.Interests.Add(Guid.NewGuid().ToString());
+
+                AddPerson(p);
+            }
         }
     }
 }
