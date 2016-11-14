@@ -14,44 +14,36 @@ namespace PeopleData
     {
         public DbSet<Person> DbPeople { get; set; }
 
-
-        public People SearchPeople(string name)
+        public People SearchActivePeople(string name)
         {
-            PeopleManager.People foundPeople = new PeopleManager.People();
+            People foundPeople = new People();
 
             //entity framework search, because we're not doing fancy with NoSQL:
-            foundPeople.PersonList = (from Person p in DbPeople where p.Name.Contains(name) select p).ToList();
+            foundPeople.PersonList = (from Person p in DbPeople where p.Name.Contains(name) && p.IsActive == true select p).ToList();
 
             return foundPeople;
         }
 
-        public bool AddPerson(Person p)
+        public void AddPerson(Person p)
         {
-            bool success = true;
-
-            try
-            {
-                //save the person:
-                DbPeople.Add(p);
-                SaveChanges();
-            }
-            catch
-            {
-                success = false;
-            }
-
-            return success;
+            //save the person:
+            DbPeople.Add(p);
+            SaveChanges();
         }
 
         public void UpdatePerson(Person p)
         {
             //update the person:
+            Entry(p).State = EntityState.Modified;
+            SaveChanges();
         }
 
         public void DeletePerson(Person p)
         {
             //Remove the person, but not really (set isactive flag = false):
-            
+            p.IsActive = false;
+            Entry(p).State = EntityState.Modified;
+            SaveChanges();
         }
 
         public void MocPeople(int peopleCount)
@@ -64,9 +56,11 @@ namespace PeopleData
                 p.HomeAddress.Localities = new List<Locality>();
                 p.HomeAddress.Localities.Add(Builder<Locality>.CreateNew());
                 p.HomeAddress.Localities.Add(Builder<Locality>.CreateNew());
-                p.Interests = new List<string>();
-                p.Interests.Add(Guid.NewGuid().ToString());
-                p.Interests.Add(Guid.NewGuid().ToString());
+                p.Interests = new List<Interest>();
+                p.Interests.Add(Builder<Interest>.CreateNew());
+                p.Interests.Add(Builder<Interest>.CreateNew());
+
+                p.IsActive = true;
 
                 AddPerson(p);
             }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Enums\TerritoryType.cs" />
+    <Compile Include="Interest.cs" />
     <Compile Include="Locality.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Person.cs" />

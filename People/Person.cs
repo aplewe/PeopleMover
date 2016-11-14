@@ -13,14 +13,14 @@ namespace PeopleManager
         //use a CDN:
         public string ProfileImageLink { get; set; }
 
-        public List<string> Interests { get; set; }
+        public List<Interest> Interests { get; set; }
 
         public bool IsActive { get; set; }
 
         public Person()
         {
             HomeAddress = new Address();
-            Interests = new List<string>();
+            Interests = new List<Interest>();
             IsActive = true;
         }
     }
