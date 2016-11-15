@@ -1,0 +1,84 @@
+﻿@{
+
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h1>People Mover</h1>
+</div>
+
+<div class="row form-inline">
+    <div class="col-md-4"><label for="txtSearchPeople"> Name</label> 
+    <input type="text" name="txtSearchPeople" id="txtSearchPeople" class="form-control" /></div>
+    <div class="col-md-1"><input type="button" onclick="searchPeople()" value="Search" class="btn" /></div>
+    <div class="col-md-2"><input type="button" onclick="searchPeopleSlow()" value="10 Second Search" class="btn" /></div>    
+    <div class="col-md-1"><input type="button" onclick="addTenPeople()" value="Add 10 People" class="btn" /></div>
+</div>
+
+<div class="row" id="peopleResults">
+</div>
+
+<script>
+    function searchPeople()
+    {
+        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...");
+
+        var name = $("#txtSearchPeople").val();
+
+        $.ajax({
+            data: {'name' : name},
+            datatype: "text/plain",
+            type: "POST",
+            url: '@(Url.Action("SearchPeople","Home",null, Request.Url.Scheme))',
+            cache: false,
+            success: function (data) {
+                $('#peopleResults').html(data);
+            },
+            complete: function (data) {
+                $(handle).hide();
+            }
+        });
+    }
+
+    function searchPeopleSlow() {
+        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...");
+       
+        setTimeout(function()
+        {
+            var name = $("#txtSearchPeople").val();
+
+            $.ajax({
+                data: { 'name': name },
+                datatype: "text/plain",
+                type: "POST",
+                url: '@(Url.Action("SearchPeople","Home",null, Request.Url.Scheme))',
+                cache: false,
+                success: function (data) {
+                    $('#peopleResults').html(data);
+                },
+                complete: function (data) {
+                    $(handle).hide();
+                }
+            });
+        }, 10000);
+    }
+
+    function addTenPeople() {
+        $.ajax({
+            data: { 'count': 10 },
+            datatype: "text/plain",
+            type: "POST",
+            url: '@(Url.Action("MockPeople","Home",null, Request.Url.Scheme))',
+            cache: false,
+            success: function (data) {
+
+            },
+            complete: function (data) {
+                toastr.options = { "timeout": 3000, "positionClass": "toast-top-center" };
+                toastr.success("", "10 People added");
+            }
+        });
+    }
+</script>

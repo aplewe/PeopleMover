@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PeopleManager.Person>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Age)</th>
+            <th>@Html.DisplayNameFor(model => model.Interests)</th>
+            <th>Home Address</th>
+        </tr>
+    </thead>
+@foreach (var item in Model)
+{
+
+<tr>
+    <td><img src="@item.ProfileImageLink" class="img-responsive" /></td>
+    <td><strong>@Html.DisplayFor(modelItem => item.Name)</strong></td>
+    <td>@Html.DisplayFor(modelItem => item.Age)</td>
+    <td>
+        @foreach (var iitem in item.Interests)
+        {
+            @Html.DisplayFor(modelItem => iitem.Name)<br />
+        }
+    </td>
+    <td>
+        <address>
+            <strong>@Html.DisplayFor(modelItem => item.HomeAddress.Address1)<br />
+            @Html.DisplayFor(modelItem => item.HomeAddress.Address2)<br /></strong>
+            @foreach (var litem in item.HomeAddress.Localities)
+            {
+                @Html.DisplayFor(modelItem => litem.LocalityName) <br />
+            }
+            @Html.DisplayFor(modelItem => item.HomeAddress.PostalCode)<text>, </text> @Html.DisplayFor(modelItem => item.HomeAddress.Country)
+        </address>
+    </td>
+</tr>
+}
+</table>
