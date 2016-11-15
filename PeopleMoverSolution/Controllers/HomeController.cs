@@ -28,7 +28,7 @@ namespace PeopleMoverSolution.Controllers
             {
                 if (p.ProfileImageLink == "default.png")
                 {
-                    p.ProfileImageLink = "Content/default.png";
+                    p.ProfileImageLink = "/Content/default.png";
                 }
             }
 

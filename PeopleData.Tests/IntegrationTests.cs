@@ -22,44 +22,6 @@ namespace PeopleData.Tests
 
         //TODO: the search works because of the mocking framework being used. Devise a better test that is framework independent
         [TestMethod]
-        public void DeleteAPerson()
-        {
-            DataAccess pda = new DataAccess();
-
-            var results = pda.SearchActivePeople("a");
-
-            int countTest = results.PersonList.Count;
-
-            if (countTest > 0)
-            {
-                pda.DeletePerson(results.PersonList[0]);
-
-                var deleteResults = pda.SearchActivePeople("a");
-
-                int deleteTest = deleteResults.PersonList.Count;
-
-                Assert.IsTrue(countTest == deleteTest + 1);
-            }
-            else
-            {
-                pda.MocPeople(2);
-
-                results = pda.SearchActivePeople("a");
-
-                countTest = results.PersonList.Count;
-
-                pda.DeletePerson(results.PersonList[0]);
-
-                var deleteResults = pda.SearchActivePeople("a");
-
-                int deleteTest = deleteResults.PersonList.Count;
-
-                Assert.IsTrue(countTest == deleteTest + 1);
-            }
-        }
-
-        //TODO: the search works because of the mocking framework being used. Devise a better test that is framework independent
-        [TestMethod]
         public void ModifyAPerson()
         {
             DataAccess pda = new DataAccess();
