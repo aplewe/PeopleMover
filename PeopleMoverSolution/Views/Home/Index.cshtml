@@ -19,12 +19,12 @@
 </div>
 
 <script>
-    function searchPeople()
-    {
+    function searchPeople() {
         var options = { "timeout": 0, "positionClass": "toast-top-full-width" };
         var handle = toastr.info("","Loading Search Results...", options);
 
         var name = $("#txtSearchPeople").val();
+        $(":button").prop("disabled", true);
 
         $.ajax({
             data: {'name' : name},
@@ -36,6 +36,7 @@
                 $('#peopleResults').html(data);
             },
             complete: function (data) {
+                $(":button").prop("disabled", false);
                 $(handle).hide();
             }
         });
@@ -44,7 +45,8 @@
     function searchPeopleSlow() {
         var options = { "timeout": 0, "positionClass": "toast-top-full-width" };
         var handle = toastr.info("","Loading Search Results...", options);
-       
+        $(":button").prop("disabled", true);
+
         setTimeout(function()
         {
             var name = $("#txtSearchPeople").val();
@@ -59,6 +61,7 @@
                     $('#peopleResults').html(data);
                 },
                 complete: function (data) {
+                    $(":button").prop("disabled", false);
                     $(handle).hide();
                 }
             });
@@ -66,6 +69,8 @@
     }
 
     function addTenPeople() {
+        $(":button").prop("disabled", true);
+
         $.ajax({
             data: { 'count': 10 },
             datatype: "text/plain",
@@ -76,8 +81,9 @@
 
             },
             complete: function (data) {
-                toastr.options = { "timeout": 3000, "positionClass": "toast-top-center" };
-                toastr.success("", "10 People added");
+                var options = { "timeout": 3000, "positionClass": "toast-top-center" };
+                toastr.success("", "10 People added", options);
+                $(":button").prop("disabled", false);
             }
         });
     }
