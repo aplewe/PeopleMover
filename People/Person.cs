@@ -22,6 +22,7 @@ namespace PeopleManager
             HomeAddress = new Address();
             Interests = new List<Interest>();
             IsActive = true;
+            ProfileImageLink = "default.png";
         }
     }
 }

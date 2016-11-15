@@ -59,6 +59,7 @@ namespace PeopleData
                 p.Interests = new List<Interest>();
                 p.Interests.Add(Builder<Interest>.CreateNew());
                 p.Interests.Add(Builder<Interest>.CreateNew());
+                p.ProfileImageLink = "default.png";
 
                 p.IsActive = true;
 
