@@ -3,20 +3,72 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div>
     <h1>People Mover</h1>
 </div>
 
 <div class="row">
     Search for people: <input type="text" name="txtSearchPeople" id="txtSearchPeople" />
+    <input type="button" onclick="searchPeople()" value="Search"/>
+    <input type="button" onclick="searchPeopleSlow()" value="10 Second Search"/>
+    <input type="button" onclick="addMorePeople()" value="Add 10 People" />
 </div>
-<div class="row">
-    @{ 
+<div class="row" id="peopleResults">
+</div>
 
-        foreach (PeopleManager.Person p in Model.PersonList)
-        {
-            <div><img src="@p.ProfileImageLink" /></div>
-            <div>@p.Name</div>
-        }
+<script>
+    function searchPeople()
+    {
+        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...");
+
+        var name = $("#txtSearchPeople").val();
+
+        $.ajax({
+            data: {'name' : name},
+            datatype: "text/plain",
+            type: "POST",
+            url: '@(Url.Action("SearchPeople","Home",null, Request.Url.Scheme))',
+            cache: false,
+            success: function (data) {
+                $('#peopleResults').html(data);
+                $(handle).hide();
+            }
+        });
     }
-</div>
+
+    function searchPeopleSlow() {
+        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...");
+        var name = $("#txtSearchPeople").val();
+
+        setTimeout(function()
+        {
+            $.ajax({
+                data: { 'name': name },
+                datatype: "text/plain",
+                type: "POST",
+                url: '@(Url.Action("SearchPeople","Home",null, Request.Url.Scheme))',
+                cache: false,
+                success: function (data) {
+                    $('#peopleResults').html(data);
+                    $(handle).hide();
+                }
+            });
+        }, 10000);
+    }
+
+    function addMorePeople() {
+        $.ajax({
+            data: { 'count': 10 },
+            datatype: "text/plain",
+            type: "POST",
+            url: '@(Url.Action("MockPeople","Home",null, Request.Url.Scheme))',
+            cache: false,
+            success: function (data) {
+                toastr.options = { "timeout": 3000, "positionClass": "toast-top-center" };
+                toastr.success("", "10 People added");
+            }
+        });
+    }
+</script>

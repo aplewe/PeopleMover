@@ -19,7 +19,7 @@ namespace PeopleData
             People foundPeople = new People();
 
             //entity framework search, because we're not doing fancy with NoSQL:
-            foundPeople.PersonList = (from Person p in DbPeople where p.Name.Contains(name) && p.IsActive == true select p).ToList();
+            foundPeople.PersonList = DbPeople.Include("HomeAddress").Include("Interests").Include("HomeAddress.Localities").Where(p => p.Name.Contains(name)).ToList();
 
             return foundPeople;
         }

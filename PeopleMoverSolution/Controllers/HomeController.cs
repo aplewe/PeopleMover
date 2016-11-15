@@ -13,9 +13,16 @@ namespace PeopleMoverSolution.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult SearchPeople(string name)
+        {
             DataAccess da = new DataAccess();
 
-            var people = da.SearchActivePeople("a");
+            var people = da.SearchActivePeople(name);
 
             foreach (Person p in people.PersonList)
             {
@@ -25,21 +32,15 @@ namespace PeopleMoverSolution.Controllers
                 }
             }
 
-            return View(people);
+            return PartialView("_PeopleResult", people.PersonList);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public void MockPeople(int count)
         {
-            ViewBag.Message = "Your application description page.";
+            DataAccess da = new DataAccess();
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            da.MocPeople(count);
         }
     }
 }
