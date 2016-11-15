@@ -3,11 +3,11 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
+<div class="row bottom-buffer">
     <h1>People Mover</h1>
 </div>
 
-<div class="row form-inline">
+<div class="row form-inline bottom-buffer">
     <div class="col-md-4"><label for="txtSearchPeople"> Name</label> 
     <input type="text" name="txtSearchPeople" id="txtSearchPeople" class="form-control" /></div>
     <div class="col-md-1"><input type="button" onclick="searchPeople()" value="Search" class="btn" /></div>
@@ -21,8 +21,8 @@
 <script>
     function searchPeople()
     {
-        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
-        var handle = toastr.info("","Loading Search Results...");
+        var options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...", options);
 
         var name = $("#txtSearchPeople").val();
 
@@ -42,8 +42,8 @@
     }
 
     function searchPeopleSlow() {
-        toastr.options = { "timeout": 0, "positionClass": "toast-top-full-width" };
-        var handle = toastr.info("","Loading Search Results...");
+        var options = { "timeout": 0, "positionClass": "toast-top-full-width" };
+        var handle = toastr.info("","Loading Search Results...", options);
        
         setTimeout(function()
         {
